@@ -1,0 +1,22 @@
+{
+  "name": "oop-team-profiles",
+  "version": "1.0.0",
+  "description": "nodejs app to generate HTML team profiles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurtmj93/oop-team-profiles.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kurtmj93/oop-team-profiles/issues"
+  },
+  "homepage": "https://github.com/kurtmj93/oop-team-profiles#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}

@@ -1,14 +1,18 @@
 // Include packages needed for this application
-
 const inquirer = require('inquirer');
 const generateHTML = require('./src/generateHTML');
 const generateCSS = require('./src/generateCSS');
 const fs = require('fs'); // allows writing to file system
 const path = require('path'); // allows writing to dist folder
 
+// Include classes from lib 
+const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+
 
 // Array of inquirer questions for user input
-
 const questions = [];
 
 function writeFileToDist(fileName, data) {

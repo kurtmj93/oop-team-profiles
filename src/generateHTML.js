@@ -1,3 +1,9 @@
+function renderEmployeeCard(info) {
+    return `
+    
+    `;
+};
+
 function generateHTML(data) {
     return `
     <!DOCTYPE html>
@@ -10,7 +16,7 @@ function generateHTML(data) {
     <link rel="stylesheet" href="style.css">
     </head>
     <body>
-	
+    ${renderEmployeeCard(info)}
     </body>
     </html>
     `;

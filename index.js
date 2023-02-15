@@ -11,9 +11,36 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+// functions for use in validating responses in inquirer question array
+
+const validate = require('./src/validators');
+
 
 // Array of inquirer questions for user input
-const questions = [];
+
+const questions = [
+    {
+        type: 'input',
+        name: 'managername',
+        message: `Begin by entering the full name of the team's manager:`
+    },
+    {
+        type: 'input',
+        name: 'manageremail',
+        message: `What is the manager's email address?`,
+        validate: function (input) {
+            return validate.Email(input);
+        }
+    },
+    {
+        type: 'input',
+        name: 'managerid',
+        message: `Enter the manager's employee ID #:`,
+        validate: function (input) {
+            return validate.Id(input);
+        }
+    }
+];
 
 function writeFileToDist(fileName, data) {
     fs.writeFile(path.join(process.cwd(), 'dist', fileName), data, (err) =>{

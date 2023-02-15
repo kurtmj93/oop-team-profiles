@@ -37,9 +37,68 @@ const questions = [
         name: 'managerid',
         message: `Enter the manager's employee ID #:`,
         validate: function (input) {
-            return validate.Id(input);
+            return validate.Num(input);
         }
-    }
+    },
+    {
+        type: 'input',
+        name: 'officenumber',
+        message: `Enter the manager's office #:`,
+        validate: function (input) {
+            return validate.Num(input);
+        }
+    },
+    {
+        type: 'list',
+        name: 'choices',
+        message: 'What would you like to do next?',
+        choices: [
+            'Add an Engineer',
+            'Add an Intern',
+            'Finish & Generate Team Profiles'
+        ]
+    },
+    { 
+        type: 'input',
+        name: 'engineername',
+        message: 'Enter the full name of the Engineer:',
+        when(answers) {
+            return answers.choices === 'Add an Engineer';
+        }
+    },
+    { 
+        type: 'input',
+        name: 'engineeremail',
+        message: `What is the engineer's email address?`,
+        validate: function (input) {
+            return validate.Email(input);
+        },
+        when(answers) {
+            return answers.choices === 'Add an Engineer';
+        },
+    },
+    { 
+        type: 'input',
+        name: 'engineerid',
+        message: `What is the engineer's employee id #?`,
+        validate: function (input) {
+            return validate.Num(input);
+        },
+        when(answers) {
+            return answers.choices === 'Add an Engineer';
+        },
+    },
+    { 
+        type: 'input',
+        name: 'username',
+        message: `What is the engineer's github username?`,
+        validate: function (input) {
+            return validate.Username(input);
+        },
+        when(answers) {
+            return answers.choices === 'Add an Engineer';
+        },
+    },
 ];
 
 function writeFileToDist(fileName, data) {

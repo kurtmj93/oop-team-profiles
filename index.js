@@ -16,9 +16,13 @@ const Intern = require('./lib/Intern');
 const validate = require('./src/validators');
 
 
-// Array of inquirer questions for user input
+// Array to store employees
 
-const questions = [
+const employeeArray = [];
+
+// Array of questions to pass to inquirer prompt when creating a new Manager
+
+const managerQuestions = [
     {
         type: 'input',
         name: 'managername',
@@ -48,6 +52,109 @@ const questions = [
             return validate.Num(input);
         }
     },
+]
+
+// function to prompt and create new manager, push to employeeArray
+
+function managerPrompt() {
+    inquirer
+        .prompt(managerQuestions)
+        .then(answers) => {
+            var manager = new Manager(answers.managername, answers.managerid, answers.manageremail, answers.officenumber);
+            employeeArray.push(manager);
+        }
+} 
+
+// Array of questions to pass to inquirer prompt when creating a new Engineer
+
+const engineerQuestions = [
+    {
+        type: 'input',
+        name: 'engineername',
+        message: `Begin by entering the full name of the engineer:`
+    },
+    {
+        type: 'input',
+        name: 'engineeremail',
+        message: `What is the engineer's email address?`,
+        validate: function (input) {
+            return validate.Email(input);
+        }
+    },
+    {
+        type: 'input',
+        name: 'engineerid',
+        message: `Enter the engineer's employee ID #:`,
+        validate: function (input) {
+            return validate.Num(input);
+        }
+    },
+    {
+        type: 'input',
+        name: 'username',
+        message: `What is the engineer's GitHub username?`,
+        validate: function (input) {
+            return validate.Username(input);
+        }
+    },
+]
+
+// function to prompt and create new engineer, push to employeeArray
+
+function engineerPrompt() {
+    inquirer
+        .prompt(engineerQuestions)
+        .then(answers) => {
+            var engineer = new Engineer(answers.engineername, answers.engineerid, answers.engineeremail, answers.username);
+            employeeArray.push(engineer);
+        }
+};
+
+// Array of questions to pass to inquirer prompt when creating a new Engineer
+
+const internQuestions = [
+    {
+        type: 'input',
+        name: 'internname',
+        message: `Begin by entering the full name of the intern:`
+    },
+    {
+        type: 'input',
+        name: 'internemail',
+        message: `What is the intern's email address?`,
+        validate: function (input) {
+            return validate.Email(input);
+        }
+    },
+    {
+        type: 'input',
+        name: 'internid',
+        message: `Enter the intern's employee ID #:`,
+        validate: function (input) {
+            return validate.Num(input);
+        }
+    },
+    {
+        type: 'input',
+        name: 'school',
+        message: `What is the intern's school?`,
+    },
+]
+
+// function to prompt and create new engineer, push to employeeArray
+
+function internPrompt() {
+    inquirer
+        .prompt(internQuestions)
+        .then(answers) => {
+            var intern = new Intern (answers.internname, answers.internid, answers.internemail, answers.school);
+            employeeArray.push(intern);
+        }
+};
+
+// Array of inquirer questions for user input
+
+const questions = [
     {
         type: 'list',
         name: 'choices',
@@ -57,47 +164,6 @@ const questions = [
             'Add an Intern',
             'Finish & Generate Team Profiles'
         ]
-    },
-    { 
-        type: 'input',
-        name: 'engineername',
-        message: 'Enter the full name of the Engineer:',
-        when(answers) {
-            return answers.choices === 'Add an Engineer';
-        }
-    },
-    { 
-        type: 'input',
-        name: 'engineeremail',
-        message: `What is the engineer's email address?`,
-        validate: function (input) {
-            return validate.Email(input);
-        },
-        when(answers) {
-            return answers.choices === 'Add an Engineer';
-        },
-    },
-    { 
-        type: 'input',
-        name: 'engineerid',
-        message: `What is the engineer's employee id #?`,
-        validate: function (input) {
-            return validate.Num(input);
-        },
-        when(answers) {
-            return answers.choices === 'Add an Engineer';
-        },
-    },
-    { 
-        type: 'input',
-        name: 'username',
-        message: `What is the engineer's github username?`,
-        validate: function (input) {
-            return validate.Username(input);
-        },
-        when(answers) {
-            return answers.choices === 'Add an Engineer';
-        },
     },
 ];
 

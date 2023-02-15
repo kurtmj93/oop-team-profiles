@@ -59,10 +59,11 @@ const managerQuestions = [
 function managerPrompt() {
     inquirer
         .prompt(managerQuestions)
-        .then(answers) => {
+        .then((answers) => {
             var manager = new Manager(answers.managername, answers.managerid, answers.manageremail, answers.officenumber);
             employeeArray.push(manager);
-        }
+            addEmployee();
+        });
 } 
 
 // Array of questions to pass to inquirer prompt when creating a new Engineer
@@ -104,10 +105,11 @@ const engineerQuestions = [
 function engineerPrompt() {
     inquirer
         .prompt(engineerQuestions)
-        .then(answers) => {
+        .then((answers) => {
             var engineer = new Engineer(answers.engineername, answers.engineerid, answers.engineeremail, answers.username);
             employeeArray.push(engineer);
-        }
+            addEmployee();
+        });
 };
 
 // Array of questions to pass to inquirer prompt when creating a new Engineer
@@ -146,26 +148,44 @@ const internQuestions = [
 function internPrompt() {
     inquirer
         .prompt(internQuestions)
-        .then(answers) => {
+        .then((answers) => {
             var intern = new Intern (answers.internname, answers.internid, answers.internemail, answers.school);
             employeeArray.push(intern);
-        }
+            addEmployee();
+        });
 };
 
-// Array of inquirer questions for user input
+// function 
 
-const questions = [
-    {
-        type: 'list',
-        name: 'choices',
-        message: 'What would you like to do next?',
-        choices: [
-            'Add an Engineer',
-            'Add an Intern',
-            'Finish & Generate Team Profiles'
+function addEmployee() {
+    inquirer.prompt(
+        [
+            {
+                type: 'list',
+                name: 'choices',
+                message: 'What would you like to do next?',
+                choices: [
+                    'Add an Engineer',
+                    'Add an Intern',
+                    'Finish & Generate Team Profiles'
+                ]
+            }
         ]
-    },
-];
+    )
+    .then((answers) => {
+        if (answers.choices === 'Add an Engineer') {
+            engineerPrompt();
+        } else if (answers.choices === 'Add an Intern') {
+            internPrompt();
+        } else {
+            var data = employeeArray;
+            console.log(data);
+            writeFileToDist('index.html', generateHTML(data));
+        }
+    })
+};
+
+
 
 function writeFileToDist(fileName, data) {
     fs.writeFile(path.join(process.cwd(), 'dist', fileName), data, (err) =>{
@@ -177,14 +197,6 @@ function writeFileToDist(fileName, data) {
 
 // Function to initialize app
 function init() {
-    //inquirer package makes this function simple & elegant
-    inquirer
-        .prompt(questions)
-        .then((answers) => {
-            writeFileToDist('style.css', generateCSS(answers));
-            writeFileToDist('index.html', generateHTML(answers));
-        });
+    managerPrompt();
 };
-
-// initialize app
-init();
+init(); // initialize app when run with node index.js

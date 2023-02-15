@@ -4,13 +4,15 @@ const inquirer = require('inquirer');
 const generateHTML = require('./src/generateHTML');
 const generateCSS = require('./src/generateCSS');
 const fs = require('fs'); // allows writing to file system
+const path = require('path'); // allows writing to dist folder
+
 
 // Array of inquirer questions for user input
 
 const questions = [];
 
-function writeFiles(fileName, data) {
-    fs.writeFile(fileName, data, (err) =>{
+function writeFileToDist(fileName, data) {
+    fs.writeFile(path.join(process.cwd(), 'dist', fileName), data, (err) =>{
         if (err) {
             console.log(err);
         } // simple err callback
@@ -23,8 +25,8 @@ function init() {
     inquirer
         .prompt(questions)
         .then((answers) => {
-            writeFiles('style.css', generateCSS(answers));
-            writeFiles('index.html', generateHTML(answers));
+            writeFileToDist('style.css', generateCSS(answers));
+            writeFileToDist('index.html', generateHTML(answers));
         });
 };
 

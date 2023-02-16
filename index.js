@@ -141,7 +141,7 @@ const internQuestions = [
     },
 ]
 
-// function to prompt and create new engineer, push to employeeArray
+// function to prompt and create new intern, push to employeeArray
 
 function internPrompt() {
     inquirer
@@ -189,8 +189,8 @@ function writeFileToDist(fileName, data) {
     });
 }
 
-// Function to initialize app
-function init() {
+// Unnamed function defined to initialize app
+(function(){
+    console.log('Initializing & reticulating splines...');
     managerPrompt();
-};
-init(); // initialize app when run with node index.js
+})(); // immediately calls after being defined

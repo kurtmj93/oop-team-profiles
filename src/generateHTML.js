@@ -1,7 +1,4 @@
 function generateHTML(data) {
-    console.log(data);
-    var employees = renderEmployeeCards(data);
-    console.log(employees); // using console.log to debug issues
     return `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -12,7 +9,7 @@ function generateHTML(data) {
     <link rel="stylesheet" href="style.css">
     </head>
     <body>
-    ${employees}
+    ${renderEmployeeCards(data)}
     </body>
     </html>
     `;
@@ -20,18 +17,42 @@ function generateHTML(data) {
 
 function renderEmployeeCards(array) {
     let html = array.map(function(employee) {
-        return `
-        <article id="${employee.getId()}" class="${employee.getRole()}">
-        <ul>
-        <li>Employee ID #: ${employee.getId()}</li>
-        <li>Name: ${employee.getName()}</li>
-        <li>Email: ${employee.getEmail()}</li>
-        </ul>
-        </article>
-        `;
-    }).join(''); // .join prevents unexpected , added between <article> tags in html
+        if (employee.getRole() === 'Manager') {
+            return `
+            <article class="Manager">
+            <ul>
+            <li>Employee ID #: ${employee.getId()}</li>
+            <li>Name: ${employee.getName()}</li>
+            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+            <li>Office #: ${employee.getOfficeNumber()}</li>
+            </ul>
+            </article>
+            `
+        } else if (employee.getRole() === 'Engineer') {
+            return `
+            <article class="Engineer">
+            <ul>
+            <li>Employee ID #: ${employee.getId()}</li>
+            <li>Name: ${employee.getName()}</li>
+            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+            <li>GitHub: <a href="https://www.github.com/${employee.getGithub()}">${employee.getGithub()}</a></li>
+            </ul>
+            </article>
+            `
+        } else {
+            return `
+            <article class="Intern">
+            <ul>
+            <li>Employee ID #: ${employee.getId()}</li>
+            <li>Name: ${employee.getName()}</li>
+            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+            <li>School: ${employee.getSchool()}</li>
+            </ul>
+            </article>
+            `;
+        }
+    }).join(''); // .join prevents unexpected "," added between <article> tags in html
     return html; 
 };
-
 
 module.exports = generateHTML;

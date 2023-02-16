@@ -1,3 +1,5 @@
+// main function to export
+
 function generateHTML(data) {
     return `<!DOCTYPE html>
     <html lang="en">
@@ -56,6 +58,8 @@ function renderEmployeeCards(array) {
         }
     }).join(''); // .join prevents unexpected "," added between <article> tags in html
     return html; 
+    // had trouble with renderEmployeeCards returning 'undefined' as I thought return in .map function would return to the parent function.
+    // needed to define this html variable to hold the .map returns, then return the variable to renderEmployeeCards.
 };
 
 module.exports = generateHTML;

@@ -11,7 +11,7 @@ const Intern = require('./lib/Intern');
 
 // functions for use in validating responses in inquirer question array
 
-const validate = require('./src/validators');
+const validate = require('./src/regexValidators');
 
 
 // Array to store employees
@@ -153,7 +153,7 @@ function internPrompt() {
         });
 };
 
-// function 
+// function serving as a menu of choices for what to do next - add employee typs or finish & generate HTML
 
 function addEmployee() {
     inquirer.prompt(
@@ -180,6 +180,8 @@ function addEmployee() {
         }
     })
 };
+
+// writeFile function
 
 function writeFileToDist(fileName, data) {
     fs.writeFile(path.join(process.cwd(), 'dist', fileName), data, (err) =>{

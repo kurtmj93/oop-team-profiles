@@ -1,12 +1,10 @@
 // Include packages needed for this application
 const inquirer = require('inquirer');
 const generateHTML = require('./src/generateHTML');
-const generateCSS = require('./src/generateCSS');
 const fs = require('fs'); // allows writing to file system
 const path = require('path'); // allows writing to dist folder
 
 // Include classes from lib 
-const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -178,14 +176,10 @@ function addEmployee() {
         } else if (answers.choices === 'Add an Intern') {
             internPrompt();
         } else {
-            var data = employeeArray;
-            console.log(data);
-            writeFileToDist('index.html', generateHTML(data));
+            writeFileToDist('index.html', generateHTML(employeeArray));
         }
     })
 };
-
-
 
 function writeFileToDist(fileName, data) {
     fs.writeFile(path.join(process.cwd(), 'dist', fileName), data, (err) =>{

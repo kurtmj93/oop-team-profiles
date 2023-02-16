@@ -1,6 +1,8 @@
 function generateHTML(data) {
-    return `
-    <!DOCTYPE html>
+    console.log(data);
+    var employees = renderEmployeeCards(data);
+    console.log(employees); // using console.log to debug issues
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
     <meta charset="UTF-8">
@@ -10,24 +12,26 @@ function generateHTML(data) {
     <link rel="stylesheet" href="style.css">
     </head>
     <body>
-    ${renderEmployeeCard(data)}
+    ${employees}
     </body>
     </html>
     `;
 };
 
-function renderEmployeeCard(data) {
-    data.map( function() {
+function renderEmployeeCards(array) {
+    let html = array.map(function(employee) {
         return `
-        <article id="${getId()}">
+        <article id="${employee.getId()}" class="${employee.getRole()}">
         <ul>
-        <li>Employee ID #: ${getId()}</li>
-        <li>Name: ${getName()}</li>
-        <li>Email: ${getEmail()}</li>
+        <li>Employee ID #: ${employee.getId()}</li>
+        <li>Name: ${employee.getName()}</li>
+        <li>Email: ${employee.getEmail()}</li>
         </ul>
         </article>
         `;
-    })
+    }).join(''); // .join prevents unexpected , added between <article> tags in html
+    return html; 
 };
+
 
 module.exports = generateHTML;

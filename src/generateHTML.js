@@ -20,9 +20,10 @@ function renderEmployeeCards(array) {
         if (employee.getRole() === 'Manager') {
             return `
             <article class="Manager">
+            <h2>${employee.getName()}</h2>
+            <h3>Manager</h3>
             <ul>
             <li>Employee ID #: ${employee.getId()}</li>
-            <li>Name: ${employee.getName()}</li>
             <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
             <li>Office #: ${employee.getOfficeNumber()}</li>
             </ul>
@@ -31,9 +32,10 @@ function renderEmployeeCards(array) {
         } else if (employee.getRole() === 'Engineer') {
             return `
             <article class="Engineer">
+            <h2>${employee.getName()}</h2>
+            <h3>Engineer</h3>
             <ul>
             <li>Employee ID #: ${employee.getId()}</li>
-            <li>Name: ${employee.getName()}</li>
             <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
             <li>GitHub: <a href="https://www.github.com/${employee.getGithub()}">${employee.getGithub()}</a></li>
             </ul>
@@ -42,9 +44,10 @@ function renderEmployeeCards(array) {
         } else {
             return `
             <article class="Intern">
+            <h2>${employee.getName()}</h2>
+            <h3>Intern</h3>
             <ul>
             <li>Employee ID #: ${employee.getId()}</li>
-            <li>Name: ${employee.getName()}</li>
             <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
             <li>School: ${employee.getSchool()}</li>
             </ul>

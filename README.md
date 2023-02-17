@@ -1,11 +1,19 @@
-# oop-team-profiles
+# OOP Team Profiles
 
-## User Story
+  ![License Badge](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+
+  ![Example Generated Page](./assets/mockup.png)
+
+  ## Description
+
+  Uses Nodejs and inquirer to prompt user for team member information, then generates an attractive and responsive HTML file with cards containing team members information. Includes classes and constructors, etc.
+
+  ### User Story
 > AS A manager  
 > I WANT to generate a webpage that displays my team's basic info  
-> SO THAT I have quick access to their emails and GitHub profiles  
+> SO THAT I have quick access to their emails and GitHub profiles
 
-## Acceptance Criteria
+### Acceptance Criteria
 > GIVEN a command-line application that accepts user input  
 > WHEN I am prompted for my team members and their information  
 > THEN an HTML file is generated that displays a nicely formatted team roster based on user input  
@@ -24,9 +32,43 @@
 > WHEN I decide to finish building my team  
 > THEN I exit the application, and the HTML is generated  
 
-## Mock-Up
+  ## Table of Contents
 
-The following image shows the generated HTML’s appearance and functionality. The styling in the image is just an example.
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Tests](#tests)
+  - [Contributing](#contributing)
+  - [Credits](#credits)
+  - [License](#license)
+  - [Questions](#questions)
 
-![HTML webpage titled “My Team” features five boxes listing employee names, titles, and other key info.](./assets/10-object-oriented-programming-homework-demo.png)
+  ## Installation
 
+  requires node, inquirer @8.2.4 and jest for test suite
+
+  ## Usage
+
+  run via command line: node index.js
+
+  video of the application in action: [Usage Video](https://github.com/Kurtmj93/)
+
+  ## Tests
+
+  run npm test via command line
+
+  ## Contributing
+
+  don't go it alone - hire me
+
+  ## Credits
+
+  uses Bulma framework - thanks Bulma!
+
+  ## License
+    
+    This project is licensed under the MIT license.
+
+  ## Questions
+
+  - [GitHub User: Kurtmj93](https://github.com/Kurtmj93/)
+  - Email: Kurtmj93@gmail.com

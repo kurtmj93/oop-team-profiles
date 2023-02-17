@@ -76,7 +76,7 @@ function renderEmployeeCards(array) {
                     <div class="card-footer">
                         <p class="card-footer-item">EID # ${employee.getId()}</li>
                         <p class="card-footer-item"><a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
-                        <p class="card-footer-item">GitHub: <a href="https://www.github.com/${employee.getGithub()}">${employee.getGithub()}</a></p>
+                        <p class="card-footer-item">GitHub:	%20<a href="https://www.github.com/${employee.getGithub()}">${employee.getGithub()}</a></p>
                     </div>
                 </div>
             </div>

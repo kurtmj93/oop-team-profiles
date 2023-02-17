@@ -50,7 +50,7 @@
 
   run via command line: node index.js
 
-  video of the application in action: [Usage Video](https://github.com/Kurtmj93/)
+  video of the application in action: [Usage Video](https://drive.google.com/file/d/1T0OU820BPsbubGyxs_KoMqh19UbhuKNd/view)
 
   ## Tests
 

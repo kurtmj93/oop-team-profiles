@@ -11,24 +11,19 @@ function generateHTML(data) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> 
     </head>
     <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="#">My Team</a>
-    </div>
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary" href="https://github.com/kurtmj93/oop-team-profiles">
-              <strong>GitHub Repository</strong>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-<div class="columns is-multiline is-mobile">
+    <section class="hero is-primary">
+            <div class="hero-body">
+              <p class="title">
+                My Team
+              </p>
+            
+            </div>
+        </section>
+    <section class="container mt-5">
+<div class="columns is-multiline">
     ${renderEmployeeCards(data)}
 </div>
+    </section>
     </body>
     </html>
     `;
@@ -38,7 +33,7 @@ function renderEmployeeCards(array) {
     let html = array.map(function(employee) {
         if (employee.getRole() === 'Manager') {
             return `
-            <div class="column is-one-third">
+            <div class="column is-half">
                 <div class="card">
                     <div class="card-content">
                         <div class="media">
@@ -63,7 +58,7 @@ function renderEmployeeCards(array) {
             `
         } else if (employee.getRole() === 'Engineer') {
             return `
-            <div class="column is-one-third">
+            <div class="column is-half">
                 <div class="card">
                     <div class="card-content">
                         <div class="media">
@@ -88,7 +83,7 @@ function renderEmployeeCards(array) {
             `
         } else {
             return `
-            <div class="column is-one-third">
+            <div class="column is-half">
                 <div class="card">
                     <div class="card-content">
                         <div class="media">

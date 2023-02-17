@@ -8,10 +8,27 @@ function generateHTML(data) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Team</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> 
     </head>
     <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">My Team</a>
+    </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary" href="https://github.com/kurtmj93/oop-team-profiles">
+              <strong>GitHub Repository</strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+<div class="columns is-multiline is-mobile">
     ${renderEmployeeCards(data)}
+</div>
     </body>
     </html>
     `;
@@ -21,39 +38,78 @@ function renderEmployeeCards(array) {
     let html = array.map(function(employee) {
         if (employee.getRole() === 'Manager') {
             return `
-            <article class="Manager">
-            <h2>${employee.getName()}</h2>
-            <h3>Manager</h3>
-            <ul>
-            <li>Employee ID #: ${employee.getId()}</li>
-            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
-            <li>Office #: ${employee.getOfficeNumber()}</li>
-            </ul>
-            </article>
+            <div class="column is-one-third">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                            <figure class="image is-48x48">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4205/4205906.png" alt="Manager Icon">
+                            </figure>
+                            </div>
+                            <div class="media-content">
+                            <p class="title is-4">${employee.getName()}</p>
+                            <p class="subtitle is-6">Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-footer-item">EID # ${employee.getId()}</li>
+                        <p class="card-footer-item"><a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
+                        <p class="card-footer-item">Office #: ${employee.getOfficeNumber()}</p>
+                    </div>
+                </div>
+            </div>
             `
         } else if (employee.getRole() === 'Engineer') {
             return `
-            <article class="Engineer">
-            <h2>${employee.getName()}</h2>
-            <h3>Engineer</h3>
-            <ul>
-            <li>Employee ID #: ${employee.getId()}</li>
-            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
-            <li>GitHub: <a href="https://www.github.com/${employee.getGithub()}">${employee.getGithub()}</a></li>
-            </ul>
-            </article>
+            <div class="column is-one-third">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                            <figure class="image is-48x48">
+                            <img src="https://cdn-icons-png.flaticon.com/512/122/122462.png" alt="Engineer Icon">
+                            </figure>
+                            </div>
+                            <div class="media-content">
+                            <p class="title is-4">${employee.getName()}</p>
+                            <p class="subtitle is-6">Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-footer-item">EID # ${employee.getId()}</li>
+                        <p class="card-footer-item"><a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
+                        <p class="card-footer-item">GitHub: <a href="https://www.github.com/${employee.getGithub()}">${employee.getGithub()}</a></p>
+                    </div>
+                </div>
+            </div>
             `
         } else {
             return `
-            <article class="Intern">
-            <h2>${employee.getName()}</h2>
-            <h3>Intern</h3>
-            <ul>
-            <li>Employee ID #: ${employee.getId()}</li>
-            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
-            <li>School: ${employee.getSchool()}</li>
-            </ul>
-            </article>
+            <div class="column is-one-third">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                            <figure class="image is-48x48">
+                            <img src="https://cdn-icons-png.flaticon.com/512/9734/9734312.png" alt="Intern Icon">
+                            </figure>
+                            </div>
+                            <div class="media-content">
+                            <p class="title is-4">${employee.getName()}</p>
+                            <p class="subtitle is-6">Intern</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <p class="card-footer-item">EID # ${employee.getId()}</li>
+                        <p class="card-footer-item"><a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></p>
+                        <p class="card-footer-item">School: ${employee.getSchool()}</p>
+                    </div>
+                </div>
+            </div>
             `;
         }
     }).join(''); // .join prevents unexpected "," added between <article> tags in html
